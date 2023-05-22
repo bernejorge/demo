@@ -1,5 +1,5 @@
 module.exports = (sequelize, DataTypes) =>{
-    const Companeros = sequelize.define('Companeros',{
+    const Companero = sequelize.define('Companero',{
         id: {
             type: DataTypes.INTEGER,
             primaryKey: true,
@@ -28,5 +28,5 @@ module.exports = (sequelize, DataTypes) =>{
         }
     })
 
-    return Companeros;
+    return Companero;
 }
