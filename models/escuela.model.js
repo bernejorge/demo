@@ -1,4 +1,3 @@
- 
 module.exports = (sequelize, DataTypes) => {
     const Escuela = sequelize.define("Escuela",{
         nombre: {
