@@ -2,7 +2,8 @@ module.exports = (sequelize, DataTypes) =>{
     const Eleccion = sequelize.define('Eleccion', {
         nombre: {
             type: DataTypes.STRING,
-            allowNull: false
+            allowNull: false, 
+            unique: true
         },
         fecha: {
             type: DataTypes.DATEONLY,

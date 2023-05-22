@@ -3,7 +3,8 @@ module.exports = (sequelize, DataTypes) => {
     const Escuela = sequelize.define("Escuela",{
         nombre: {
             type: DataTypes.STRING,
-            allowNull: false
+            allowNull: false, 
+            unique: true,
         },
         direccion:  {
             type: DataTypes.STRING,

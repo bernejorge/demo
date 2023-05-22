@@ -1,0 +1,33 @@
+version: '3.9'
+services:
+  mi-app:
+    build: .
+    ports:
+      - 30000:3000
+    networks:
+      - nombre-red
+  dbElecciones:
+    image: postgres:13
+    environment:
+      - POSTGRES_DB=elecciones
+      - POSTGRES_USER=jorge
+      - POSTGRES_PASSWORD=admin123
+    ports:
+      - 5432:5432
+    networks:
+      - nombre-red  
+    volumes:
+      - ./postgres_data:/var/lib/postgres/data  
+  pgadminElecciones:
+    image: 03adfa2b5a55
+    environment:
+      - PGADMIN_DEFAULT_EMAIL=admin@mail.com
+      - PGADMIN_DEFAULT_PASSWORD=root
+    ports:
+      - 5080:80
+    networks:
+      - nombre-red  
+networks:
+  nombre-red:
+    external:
+      name: red-eleccion
