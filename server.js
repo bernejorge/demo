@@ -16,6 +16,9 @@ app.use('/api/elecciones', eleccionesRoute);
 const mesasRoute = require('./routes/mesas.routes');
 app.use('/api/mesas', mesasRoute);
 
+const companeroRoute = require('./routes/companeros.routes');
+app.use('/api/companeros', companeroRoute);
+
 db.sequelize.sync({ alter: true }).then(() => {
   app.listen(port, () => {
     console.log(`listening on port ${port}`);
