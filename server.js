@@ -31,6 +31,9 @@ app.use('/api/fiscalesgenerales', fiscalGeneralRoute);
 const candidatoRoute = require('./routes/candidatos.routes');
 app.use('/api/candidatos', candidatoRoute);
 
+const partidoRoute = require('./routes/partidos.routes');
+app.use('/api/partidos', partidoRoute);
+
 db.sequelize.sync({ alter: true }).then(() => {
   app.listen(port, () => {
     console.log(`listening on port ${port}`);

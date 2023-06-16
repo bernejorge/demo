@@ -7,6 +7,10 @@ module.exports = (sequelize, DataTypes) => {
         primaryKey: true,
         autoIncrement: true,
       },
+      numero_lista:{
+        type: DataTypes.STRING,
+        allowNull: false,
+      },
       nombre: {
         type: DataTypes.STRING,
         allowNull: false,
