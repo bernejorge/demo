@@ -3,7 +3,7 @@ const router = express.Router();
 
 const db = require('../models');
 
-const repository = db.Companeros;
+const repository = db.Companero;
 
 router.get('/', (req, res) => {
     repository.findAll()

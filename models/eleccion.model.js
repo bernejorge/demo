@@ -1,18 +1,21 @@
-module.exports = (sequelize, DataTypes) =>{
-    const Eleccion = sequelize.define('Eleccion', {
-        nombre: {
-            type: DataTypes.STRING,
-            allowNull: false, 
-            unique: true
-        },
-        fecha: {
-            type: DataTypes.DATEONLY,
-            allowNull: false
-        }
+module.exports = (sequelize, DataTypes) => {
+  const Eleccion = sequelize.define(
+    "Eleccion",
+    {
+      nombre: {
+        type: DataTypes.STRING,
+        allowNull: false,
+        unique: true,
+      },
+      fecha: {
+        type: DataTypes.DATEONLY,
+        allowNull: false,
+      },
     },
     {
-        tableName: 'Elecciones'
-    })
+      tableName: "Elecciones",
+    }
+  );
 
-    return Eleccion;
-}
+  return Eleccion;
+};
