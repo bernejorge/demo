@@ -34,6 +34,10 @@ app.use('/api/candidatos', candidatoRoute);
 const partidoRoute = require('./routes/partidos.routes');
 app.use('/api/partidos', partidoRoute);
 
+const listasRoute = require('./routes/listas.routes');
+app.use('/api/listas', listasRoute);
+
+
 db.sequelize.sync({ alter: true }).then(() => {
   app.listen(port, () => {
     console.log(`listening on port ${port}`);
