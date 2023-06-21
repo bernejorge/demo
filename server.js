@@ -1,7 +1,7 @@
 const express = require("express");
 const app = express();
 const db = require("./models");
-const cors = require('cors');
+const cors = require("cors");
 
 const port = 3000;
 
@@ -13,6 +13,11 @@ app.use(cors());
 app.get("/", (req, res) => {
   res.send("Hello World! Despligue continuo!!!");
 });
+
+app.listen(port, () => {
+  console.log(`listening on port ${port}`);
+});
+
 // const escuelaRoute = require('./routes/escuela.routes');
 // app.use('/api/escuelas', escuelaRoute);
 
@@ -39,7 +44,6 @@ app.get("/", (req, res) => {
 
 // const listasRoute = require('./routes/listas.routes');
 // app.use('/api/listas', listasRoute);
-
 
 // db.sequelize.sync({ alter: true }).then(() => {
 //   app.listen(port, () => {
