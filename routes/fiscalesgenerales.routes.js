@@ -74,8 +74,8 @@ router.post("/", (req, res) => {
   const fiscalGeneral = repository.build(req.body);
   fiscalGeneral
     .save()
-    .then((fiscal) => {
-      res.json(fiscal);
+    .then((f) => {
+      res.json(f);
     })
     .catch((err) => {
       res.json(err);

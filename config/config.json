@@ -1,5 +1,5 @@
 {
-  "development": {
+  "test": {
     "username": "jorge",
     "password": "admin123",
     "database": "elecciones",
@@ -7,12 +7,18 @@
     "dialect": "postgres",
     "port" : 5432
   },
-  "test": {
-    "username": "root",
-    "password": null,
-    "database": "database_test",
-    "host": "127.0.0.1",
-    "dialect": "postgres"
+  "development": {
+    "username": "bernejorge",
+    "password": "LnXvaldx0A1E",
+    "database": "neondb",
+    "host": "ep-morning-field-047166.us-east-2.aws.neon.tech",
+    "dialect": "postgres",
+    "dialectOptions": {
+      "ssl": {
+        "require": true,
+        "rejectUnauthorized": false
+      }
+    }
   },
   "production": {
     "username": "root",
