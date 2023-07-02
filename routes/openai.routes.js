@@ -1,7 +1,7 @@
 const express = require("express");
 const { Configuration, OpenAIApi } = require("openai");
 const router = express.Router();
-
+require('dotenv').config();
 // Configura la instancia de ChatCompletion con tu API key
 const configuration = new Configuration({
     apiKey: process.env.API_KEY,
@@ -12,6 +12,7 @@ const configuration = new Configuration({
 
 // Ruta POST para enviar solicitudes a ChatGPT
 router.post("/", async (req, res) => {
+    //console.log("apikey = " + configuration.apiKey);
   try {
     const openai = new OpenAIApi(configuration);
 
