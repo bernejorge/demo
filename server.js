@@ -43,6 +43,9 @@ app.use('/api/partidos', partidoRoute);
 const listasRoute = require('./routes/listas.routes');
 app.use('/api/listas', listasRoute);
 
+const cargoRoute = require('./routes/cargos.routes');
+app.use('/api/listas', cargoRoute);
+
 const gptRoute = require('./routes/openai.routes');
 app.use('/api/gpt', gptRoute);
 

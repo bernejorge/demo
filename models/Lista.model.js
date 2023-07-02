@@ -26,7 +26,11 @@ module.exports = (sequelize, DataTypes) => {
       eleccion_id: {
         type: DataTypes.INTEGER,
         allowNull: false,
-      }
+      },
+      cargo_id: {
+        type: DataTypes.INTEGER,
+        allowNull: false,
+      },
     },
     {
         tableName: 'ListasElectorales'
@@ -37,6 +41,7 @@ module.exports = (sequelize, DataTypes) => {
     ListaElectoral.belongsTo(models.Partido, { foreignKey: 'partido_id' });
     ListaElectoral.belongsTo(models.Candidato, { foreignKey: 'candidato_id' });
     ListaElectoral.belongsTo(models.Eleccion, { foreignKey: 'eleccion_id' });
+    ListaElectoral.belongsTo(models.Cargo, { foreignKey: 'cargo_id' });
   };
 
   return ListaElectoral;
