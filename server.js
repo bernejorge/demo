@@ -43,6 +43,9 @@ app.use('/api/partidos', partidoRoute);
 const listasRoute = require('./routes/listas.routes');
 app.use('/api/listas', listasRoute);
 
+const gptRoute = require('./routes/openai.routes');
+app.use('/api/gpt', gptRoute);
+
 db.sequelize.sync({ alter: true }).then(() => {
   app.listen(port, () => {
     console.log(`listening on port ${port}`);
