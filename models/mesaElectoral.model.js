@@ -3,7 +3,7 @@ module.exports = (sequelize, DataTypes) => {
     "MesaElectoral",
     {
       numeroMesa: {
-        type: DataTypes.INTEGER,
+        type: DataTypes.STRING,
         allowNull: false,
       },
       eleccion_id: {
