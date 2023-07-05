@@ -11,7 +11,7 @@ app.use(express.urlencoded({ extended: true }));
 app.use(cors());
 
 app.get("/", (req, res) => {
-  res.send("Hello World! Despligue continuo v3!!!");
+  res.send("Hello World! Despligue continuo v3.2!!!");
 });
 
 
@@ -44,7 +44,7 @@ const listasRoute = require('./routes/listas.routes');
 app.use('/api/listas', listasRoute);
 
 const cargoRoute = require('./routes/cargos.routes');
-app.use('/api/listas', cargoRoute);
+app.use('/api/cargos', cargoRoute);
 
 const gptRoute = require('./routes/openai.routes');
 app.use('/api/gpt', gptRoute);

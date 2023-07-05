@@ -18,7 +18,29 @@ router.get('/', (req, res) => {
     .catch((err) => res.json(err))
     //res.send("Hola Jorge!");
 });
-
+router.get("/obtenerPorEleccion", async (req, res) => {
+    const eleccion_id = req.query.eleccion_id;
+    if (!eleccion_id) {
+      eleccion_id = 0;
+    }
+  
+    const listas = await repository.findAll({
+      where: {
+        eleccion_id: eleccion_id,
+      },
+      include: [
+        db.Partido,
+        db.Candidato,
+        db.Eleccion,
+        db.Cargo
+    ],
+    });
+    if (listas === null) {
+      res.status(404).json({ message: "No se encontraron listas electorales para la elección solicitada." });
+    } else {
+      res.json(listas);
+    }
+  });
 router.get('/:id', async (req, res) => {
     const id = req.params.id;
     
