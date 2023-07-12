@@ -27,6 +27,14 @@ module.exports = (sequelize, DataTypes) => {
         allowNull: false,
       },
     });
+    
+    MesaElectoral.hasMany(models.Resultado, { 
+      onDelete: "cascade", 
+      foreignKey: {
+        name: "mesa_id",
+        allowNull: false,
+      } 
+    });
   };
 
   return MesaElectoral;

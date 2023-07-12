@@ -40,8 +40,11 @@ router.get("/byEscuela", async (req, res) => {
 });
 
 router.get("/:id", async (req, res) => {
-  const id = req.params.id;
-  const mesa = await repository.findByPk(id);
+  const id = req. params.id;
+  if(!id){
+    res.status(400).json({message: 'Parametros incorrectos'});
+  }
+  const mesa = await repository.findByPk(id, { include: 'Escuela' });
   if (mesa === null) {
     res.status(404).json({ message: "No se encontró la mesa." });
   } else {
@@ -60,7 +63,7 @@ router.post("/", (req, res) => {
       res.json(err);
     });
   console.log(mesa);
-});
+});-
 
 router.patch("/:id", async (req, res) => {
   const id = req.params.id;

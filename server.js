@@ -14,43 +14,46 @@ app.get("/", (req, res) => {
   res.send("Hello World! Despligue continuo v3.2!!!");
 });
 
+const escuelaRoute = require("./routes/escuela.routes");
+app.use("/api/escuelas", escuelaRoute);
 
+const eleccionesRoute = require("./routes/eleccion.routes");
+app.use("/api/elecciones", eleccionesRoute);
 
-const escuelaRoute = require('./routes/escuela.routes');
-app.use('/api/escuelas', escuelaRoute);
+const mesasRoute = require("./routes/mesas.routes");
+app.use("/api/mesas", mesasRoute);
 
-const eleccionesRoute = require('./routes/eleccion.routes');
-app.use('/api/elecciones', eleccionesRoute);
+const companeroRoute = require("./routes/companeros.routes");
+app.use("/api/companeros", companeroRoute);
 
-const mesasRoute = require('./routes/mesas.routes');
-app.use('/api/mesas', mesasRoute);
+const fiscalMesaRoute = require("./routes/fiscalesdemesas.routes");
+app.use("/api/fiscalesdemesas", fiscalMesaRoute);
 
-const companeroRoute = require('./routes/companeros.routes');
-app.use('/api/companeros', companeroRoute);
+const fiscalGeneralRoute = require("./routes/fiscalesgenerales.routes.js");
+app.use("/api/fiscalesgenerales", fiscalGeneralRoute);
 
-const fiscalMesaRoute = require('./routes/fiscalesdemesas.routes');
-app.use('/api/fiscalesdemesas', fiscalMesaRoute);
+const candidatoRoute = require("./routes/candidatos.routes");
+app.use("/api/candidatos", candidatoRoute);
 
-const fiscalGeneralRoute = require('./routes/fiscalesgenerales.routes.js');
-app.use('/api/fiscalesgenerales', fiscalGeneralRoute);
+const partidoRoute = require("./routes/partidos.routes");
+app.use("/api/partidos", partidoRoute);
 
-const candidatoRoute = require('./routes/candidatos.routes');
-app.use('/api/candidatos', candidatoRoute);
+const listasRoute = require("./routes/listas.routes");
+app.use("/api/listas", listasRoute);
 
-const partidoRoute = require('./routes/partidos.routes');
-app.use('/api/partidos', partidoRoute);
+const cargoRoute = require("./routes/cargos.routes");
+app.use("/api/cargos", cargoRoute);
 
-const listasRoute = require('./routes/listas.routes');
-app.use('/api/listas', listasRoute);
+const gptRoute = require("./routes/openai.routes");
+app.use("/api/gpt", gptRoute);
 
-const cargoRoute = require('./routes/cargos.routes');
-app.use('/api/cargos', cargoRoute);
-
-const gptRoute = require('./routes/openai.routes');
-app.use('/api/gpt', gptRoute);
-
-db.sequelize.sync({ alter: true }).then(() => {
-  app.listen(port, () => {
-    console.log(`listening on port ${port}`);
-  });
+const escrutinioRoute = require("./routes/escrutinio.routes");
+app.use("/api/escrutinio", escrutinioRoute);
+// db.sequelize.sync({ alter: true }).then(() => {
+//   app.listen(port, () => {
+//     console.log(`listening on port ${port}`);
+//   });
+// });
+app.listen(port, () => {
+  console.log(`listening on port ${port}`);
 });

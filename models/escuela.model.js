@@ -2,11 +2,11 @@ module.exports = (sequelize, DataTypes) => {
   const Escuela = sequelize.define(
     "Escuela",
     {
-        id: {
-            type: DataTypes.INTEGER,
-            primaryKey: true,
-            autoIncrement: true
-        },
+      id: {
+        type: DataTypes.INTEGER,
+        primaryKey: true,
+        autoIncrement: true,
+      },
       nombre: {
         type: DataTypes.STRING,
         allowNull: false,
@@ -29,7 +29,7 @@ module.exports = (sequelize, DataTypes) => {
       onDelete: "cascade",
       foreignKey: {
         name: "escuela_id",
-        allowNull: false
+        allowNull: false,
       },
     });
 
