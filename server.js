@@ -15,7 +15,7 @@ app.use(express.urlencoded({ extended: true }));
 app.use(cors());
 
 app.get("/", (req, res) => {
-  res.send("Hello World! Despligue continuo v3.2!!!");
+  res.send("Hello World! Despligue continuo v3.4!!!");
 });
 
 const escuelaRoute = require("./routes/escuela.routes");
