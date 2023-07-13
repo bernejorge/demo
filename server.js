@@ -1,7 +1,11 @@
 const express = require("express");
 const app = express();
 const db = require("./models");
+const socketIO = require("socket.io");
+const http = require("http");
 const cors = require("cors");
+const { configureSocket, getIO } = require("./socket"); // Ajusta la ruta del archivo socket.js
+
 
 const port = 3000;
 
@@ -49,11 +53,19 @@ app.use("/api/gpt", gptRoute);
 
 const escrutinioRoute = require("./routes/escrutinio.routes");
 app.use("/api/escrutinio", escrutinioRoute);
+
+
 // db.sequelize.sync({ alter: true }).then(() => {
 //   app.listen(port, () => {
 //     console.log(`listening on port ${port}`);
 //   });
 // });
-app.listen(port, () => {
-  console.log(`listening on port ${port}`);
+// Configurar Socket.IO
+// Configurar Socket.IO
+const server = app.listen(3000, () => {
+  console.log('Servidor Express en ejecución');
 });
+
+// Configurar Socket.IO pasando el servidor de Express
+configureSocket(server);
+

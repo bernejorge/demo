@@ -1,6 +1,8 @@
 const express = require("express");
 const db = require("../models");
 const router = express.Router();
+const { Op } = require("sequelize");
+const { configureSocket, getIO } = require("../socket");
 
 router.get("/resultadoMesa", async (req, res) => {
   try {
@@ -89,10 +91,65 @@ router.post("/gurdarResultado", async (req, res) => {
       await db.sequelize.query(insertSQL, { transaction });
       // Asocia los detalles al resultado
       //await resultado.setDetalleResultado(detalles, { transaction });
-      res.status(201).json({ message: "Resultado y detalles guardados correctamente" });
+      // Emitir el evento a todos los clientes conectados
+      const io = getIO();
+      io.emit("nuevaNotificacion", {
+        mensaje: "Se ha guardado un nuevo resultado",
+      });
+
+      res
+        .status(201)
+        .json({ message: "Resultado y detalles guardados correctamente" });
     });
   } catch (error) {
     res.status(500).json({ error: "Error insperado en el servidor" });
   }
 });
+
+router.get("/todosPorCargo", async (req, res) => {
+  try {
+    const repository = db.Resultado;
+    const cargo_id = req.query.cargo_id;
+    const eleccion_id = req.query.eleccion_id;
+
+    const rta = await repository.findAll({
+      where: { cargo_id: cargo_id },
+      include: [
+        {
+          model: db.MesaElectoral,
+          where: { eleccion_id: eleccion_id },
+        },
+      ],
+    });
+
+    if (rta) {
+        const ids = rta.map(x=>{
+            return x.dataValues.mesa_id;
+        });
+      const detalles = await db.DetalleResultado.findAll({
+        where: {
+          cargo_id: cargo_id,
+          mesa_id: {
+            [Op.in]: ids,
+          },
+        },
+        include: [
+          {
+            model: db.ListaElectoral,
+            include: { all: true }, // Incluir todas las relaciones de ListaElectoral y sus relaciones secundarias
+          },
+        ],
+      });
+      // Agregar la propiedad DetalleResultado al objeto rta
+      //rta.setDataValue("DetalleResultado", detalles);
+
+      res.status(200).json(detalles);
+    } else {
+      res.status(204).json("No hay resultados guardados todavía");
+    }
+  } catch (error) {
+    res.status(500).json({ error: "Error insperado en el servidor" });
+  }
+});
+
 module.exports = router;
